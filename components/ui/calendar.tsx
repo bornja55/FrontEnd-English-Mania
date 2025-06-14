@@ -9,6 +9,15 @@ import { buttonVariants } from '@/components/ui/button';
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
+// Custom icon components for navigation
+function PrevIcon() {
+  return <ChevronLeft className="h-4 w-4" />;
+}
+
+function NextIcon() {
+  return <ChevronRight className="h-4 w-4" />;
+}
+
 function Calendar({
   className,
   classNames,
@@ -54,9 +63,14 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        IconPrevious: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
-        IconNext: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
+        Chevron: ({ orientation, ...props }) => {
+          if (orientation === 'left') {
+            return <ChevronLeft className="h-4 w-4" />;
+          }
+          return <ChevronRight className="h-4 w-4" />;
+        },
       }}
+      {...props}
     />
   );
 }

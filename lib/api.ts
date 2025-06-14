@@ -1,4 +1,3 @@
-
 import { 
   User, 
   AuthResponse, 
@@ -39,9 +38,10 @@ class ApiClient {
     options: RequestInit = {}
   ): Promise<T> {
     const url = `${this.baseURL}${endpoint}`;
-    const headers: HeadersInit = {
+    // เปลี่ยนจาก HeadersInit เป็น Record<string, string>
+    const headers: Record<string, string> = {
       'Content-Type': 'application/json',
-      ...options.headers,
+      ...(options.headers as Record<string, string>),
     };
 
     if (this.token) {
