@@ -1,4 +1,3 @@
-
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { AuthState, User } from './types';
@@ -10,6 +9,7 @@ interface AuthStore extends AuthState {
   logout: () => void;
   refreshAuth: () => Promise<void>;
   setUser: (user: User) => void;
+  setToken: (token: string, refreshToken?: string) => Promise<void>; // เพิ่มบรรทัดนี้
 }
 
 export const useAuthStore = create<AuthStore>()(
@@ -96,6 +96,29 @@ export const useAuthStore = create<AuthStore>()(
 
       setUser: (user: User) => {
         set({ user });
+      },
+
+      // เพิ่มฟังก์ชัน setToken
+      setToken: async (token: string, refreshToken?: string) => {
+        set({ isLoading: true });
+        try {
+          apiClient.setToken(token);
+          
+          // ดึงข้อมูล user จาก token
+          const user = await apiClient.getCurrentUser();
+          
+          set({
+            user,
+            token,
+            refreshToken: refreshToken || get().refreshToken,
+            isAuthenticated: true,
+            isLoading: false,
+          });
+        } catch (error) {
+          console.error('Failed to set token:', error);
+          set({ isLoading: false });
+          throw error;
+        }
       },
     }),
     {
