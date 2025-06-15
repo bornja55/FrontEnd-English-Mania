@@ -41,9 +41,18 @@ export function LoginForm() {
   };
 
   const handleLineLogin = () => {
-    // In a real implementation, this would integrate with LINE Login SDK
-    // For now, we'll show a placeholder
-    setError('LINE Login integration will be implemented with LINE SDK');
+    const clientId = process.env.NEXT_PUBLIC_LINE_LOGIN_CHANNEL_ID;
+    const redirectUri = encodeURIComponent(process.env.NEXT_PUBLIC_LINE_LOGIN_REDIRECT_URI || 'http://35.209.165.43:3000/line/callback');
+    const state = Math.random().toString(36).substring(2, 15); // random state
+    const scope = 'profile openid email';
+    
+    const lineAuthUrl = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&state=${state}&scope=${scope}`;
+    
+    // เก็บ state ไว้ใน localStorage เพื่อตรวจสอบหลัง callback
+    localStorage.setItem('line_login_state', state);
+    
+    // Redirect ไป LINE
+    window.location.href = lineAuthUrl;
   };
 
   const toggleLanguage = () => {
