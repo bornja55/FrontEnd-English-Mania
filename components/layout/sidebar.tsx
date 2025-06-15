@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -12,7 +11,6 @@ import {
   FileText,
   CreditCard,
   UserCheck,
-  Settings,
   BarChart3,
 } from 'lucide-react';
 
@@ -66,7 +64,7 @@ export function Sidebar() {
   });
 
   return (
-    <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 lg:pt-16 lg:bg-gray-50 lg:border-r">
+    <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 lg:pt-16 bg-gradient-to-b from-primary/10 via-accent/10 to-white border-r border-primary/20">
       <div className="flex-1 flex flex-col min-h-0 pt-6">
         <nav className="flex-1 px-4 space-y-1">
           {filteredNavItems.map((item) => {
@@ -78,16 +76,16 @@ export function Sidebar() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'group flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors',
+                  'group flex items-center px-3 py-2 text-sm font-bold rounded-xl transition-colors',
                   isActive
-                    ? 'bg-blue-100 text-blue-700 border-r-2 border-blue-700'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                    ? 'bg-primary/10 text-primary border-r-4 border-primary shadow'
+                    : 'text-em-navy hover:text-primary hover:bg-accent/10'
                 )}
               >
                 <Icon
                   className={cn(
                     'mr-3 h-5 w-5 flex-shrink-0',
-                    isActive ? 'text-blue-700' : 'text-gray-400 group-hover:text-gray-500'
+                    isActive ? 'text-primary' : 'text-accent group-hover:text-primary'
                   )}
                 />
                 {item.label}

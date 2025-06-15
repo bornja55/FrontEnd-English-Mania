@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -61,22 +60,15 @@ export function Header() {
 
   const filteredNavItems = navigationItems.filter(item => {
     if (!user) return false;
-    
-    // Admin can see all
     if (user.role?.role_name === 'admin') return true;
-    
-    // Teacher can see most except students management
     if (user.role?.role_name === 'teacher') {
       return !['students'].some(restricted => item.href.includes(restricted));
     }
-    
-    // Student can only see limited items
     if (user.role?.role_name === 'student') {
       return ['dashboard', 'exams', 'courses', 'payments'].some(allowed => 
         item.href.includes(allowed)
       );
     }
-    
     return false;
   });
 
@@ -86,14 +78,14 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/dashboard" className="flex items-center space-x-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-red-500 to-blue-600">
-              <BookOpen className="h-5 w-5 text-white" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-accent to-em-navy shadow-md">
+              <BookOpen className="h-6 w-6 text-white" />
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-lg font-bold text-gray-900">
+              <h1 className="text-lg font-extrabold text-primary tracking-wide drop-shadow">
                 ENGLISH MANIA
               </h1>
-              <p className="text-xs text-gray-500">by KruYam</p>
+              <p className="text-xs text-accent font-semibold">by KruYam</p>
             </div>
           </Link>
 
@@ -105,7 +97,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+                  className="flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium text-em-navy hover:text-primary hover:bg-accent/20 transition-colors"
                 >
                   <Icon className="h-4 w-4" />
                   <span>{item.label}</span>
@@ -121,10 +113,10 @@ export function Header() {
               variant="ghost"
               size="sm"
               onClick={toggleLanguage}
-              className="hidden sm:flex items-center space-x-1"
+              className="hidden sm:flex items-center space-x-1 text-primary"
             >
               <Globe className="h-4 w-4" />
-              <span className="text-xs font-medium">
+              <span className="text-xs font-bold">
                 {language.toUpperCase()}
               </span>
             </Button>
@@ -137,9 +129,9 @@ export function Header() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
-                <X className="h-5 w-5" />
+                <X className="h-5 w-5 text-primary" />
               ) : (
-                <Menu className="h-5 w-5" />
+                <Menu className="h-5 w-5 text-primary" />
               )}
             </Button>
 
@@ -147,9 +139,9 @@ export function Header() {
             {user && (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                    <Avatar className="h-8 w-8">
-                      <AvatarFallback className="bg-gradient-to-br from-blue-500 to-green-500 text-white text-xs">
+                  <Button variant="ghost" className="relative h-9 w-9 rounded-full p-0">
+                    <Avatar className="h-9 w-9">
+                      <AvatarFallback className="bg-gradient-to-br from-primary via-accent to-em-navy text-white text-xs font-bold">
                         {getInitials(user.name)}
                       </AvatarFallback>
                     </Avatar>
@@ -158,11 +150,11 @@ export function Header() {
                 <DropdownMenuContent className="w-56" align="end" forceMount>
                   <div className="flex items-center justify-start gap-2 p-2">
                     <div className="flex flex-col space-y-1 leading-none">
-                      <p className="font-medium">{user.name || 'User'}</p>
+                      <p className="font-bold text-primary">{user.name || 'User'}</p>
                       <p className="text-xs text-muted-foreground">
                         {user.email}
                       </p>
-                      <p className="text-xs text-muted-foreground capitalize">
+                      <p className="text-xs text-accent capitalize">
                         {user.role?.role_name}
                       </p>
                     </div>
@@ -205,7 +197,7 @@ export function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+                    className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-em-navy hover:text-primary hover:bg-accent/20 transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <Icon className="h-5 w-5" />

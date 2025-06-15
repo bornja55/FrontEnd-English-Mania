@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -69,25 +68,25 @@ export default function AdminDashboardPage() {
       title: t('dashboard.totalStudents'),
       value: stats.totalStudents,
       icon: Users,
-      color: 'bg-blue-500',
+      color: 'bg-primary', // ฟ้าอมเขียว
     },
     {
       title: t('dashboard.totalCourses'),
       value: stats.totalCourses,
       icon: BookOpen,
-      color: 'bg-green-500',
+      color: 'bg-accent', // เหลืองทอง
     },
     {
       title: t('dashboard.totalExams'),
       value: stats.totalExams,
       icon: FileText,
-      color: 'bg-yellow-500',
+      color: 'bg-em-navy', // navy
     },
     {
       title: t('dashboard.totalPayments'),
       value: stats.totalPayments,
       icon: CreditCard,
-      color: 'bg-red-500',
+      color: 'bg-em-yellow', // เหลืองทอง
     },
   ];
 
@@ -104,7 +103,7 @@ export default function AdminDashboardPage() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gradient-to-br from-primary/10 via-accent/10 to-white">
         <Header />
         <div className="flex">
           <Sidebar />
@@ -115,23 +114,23 @@ export default function AdminDashboardPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="bg-gradient-to-r from-blue-600 via-purple-600 to-red-600 rounded-2xl p-6 text-white shadow-lg"
+                className="bg-gradient-to-r from-primary via-accent to-em-navy rounded-2xl p-6 text-em-navy shadow-lg"
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <h1 className="text-2xl font-bold mb-2">
+                    <h1 className="text-2xl font-bold mb-2 text-white drop-shadow">
                       {getGreeting()}, {user?.name || 'User'}!
                     </h1>
-                    <p className="text-blue-100 text-sm">
+                    <p className="text-accent text-sm font-medium">
                       {t('dashboard.welcome')} English Mania by KruYam
                     </p>
-                    <p className="text-blue-100 text-xs mt-1 capitalize">
+                    <p className="text-primary-foreground text-xs mt-1 capitalize">
                       {user?.role?.role_name} Dashboard
                     </p>
                   </div>
                   <div className="hidden sm:block">
-                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
-                      <Activity className="h-8 w-8 text-white" />
+                    <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center">
+                      <Activity className="h-8 w-8 text-primary" />
                     </div>
                   </div>
                 </div>
@@ -161,7 +160,7 @@ export default function AdminDashboardPage() {
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center space-x-2">
-                        <TrendingUp className="h-5 w-5 text-blue-600" />
+                        <TrendingUp className="h-5 w-5 text-primary" />
                         <span>{t('dashboard.recentActivity')}</span>
                       </CardTitle>
                       <CardDescription>
@@ -170,19 +169,19 @@ export default function AdminDashboardPage() {
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
-                        <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
-                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <div className="flex items-center space-x-3 p-3 bg-primary/10 rounded-lg">
+                          <div className="w-2 h-2 bg-primary rounded-full"></div>
                           <div className="flex-1">
-                            <p className="text-sm font-medium text-gray-900">
+                            <p className="text-sm font-medium text-em-navy">
                               System initialized successfully
                             </p>
                             <p className="text-xs text-gray-500">Just now</p>
                           </div>
                         </div>
-                        <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
-                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <div className="flex items-center space-x-3 p-3 bg-accent/10 rounded-lg">
+                          <div className="w-2 h-2 bg-accent rounded-full"></div>
                           <div className="flex-1">
-                            <p className="text-sm font-medium text-gray-900">
+                            <p className="text-sm font-medium text-em-navy">
                               Dashboard loaded
                             </p>
                             <p className="text-xs text-gray-500">1 minute ago</p>
@@ -201,7 +200,7 @@ export default function AdminDashboardPage() {
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center space-x-2">
-                        <FileText className="h-5 w-5 text-green-600" />
+                        <FileText className="h-5 w-5 text-accent" />
                         <span>Quick Actions</span>
                       </CardTitle>
                       <CardDescription>
@@ -214,19 +213,19 @@ export default function AdminDashboardPage() {
                           <>
                             <a
                               href="/students"
-                              className="p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-center"
+                              className="p-3 bg-primary/10 hover:bg-primary/20 rounded-lg transition-colors text-center"
                             >
-                              <Users className="h-6 w-6 text-blue-600 mx-auto mb-1" />
-                              <p className="text-xs font-medium text-blue-900">
+                              <Users className="h-6 w-6 text-primary mx-auto mb-1" />
+                              <p className="text-xs font-medium text-em-navy">
                                 {t('nav.students')}
                               </p>
                             </a>
                             <a
                               href="/exams"
-                              className="p-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors text-center"
+                              className="p-3 bg-accent/10 hover:bg-accent/20 rounded-lg transition-colors text-center"
                             >
-                              <FileText className="h-6 w-6 text-green-600 mx-auto mb-1" />
-                              <p className="text-xs font-medium text-green-900">
+                              <FileText className="h-6 w-6 text-accent mx-auto mb-1" />
+                              <p className="text-xs font-medium text-em-navy">
                                 {t('nav.exams')}
                               </p>
                             </a>
@@ -234,19 +233,19 @@ export default function AdminDashboardPage() {
                         )}
                         <a
                           href="/courses"
-                          className="p-3 bg-yellow-50 hover:bg-yellow-100 rounded-lg transition-colors text-center"
+                          className="p-3 bg-em-yellow/10 hover:bg-em-yellow/20 rounded-lg transition-colors text-center"
                         >
-                          <BookOpen className="h-6 w-6 text-yellow-600 mx-auto mb-1" />
-                          <p className="text-xs font-medium text-yellow-900">
+                          <BookOpen className="h-6 w-6 text-em-yellow mx-auto mb-1" />
+                          <p className="text-xs font-medium text-em-navy">
                             {t('nav.courses')}
                           </p>
                         </a>
                         <a
                           href="/payments"
-                          className="p-3 bg-red-50 hover:bg-red-100 rounded-lg transition-colors text-center"
+                          className="p-3 bg-em-blue/10 hover:bg-em-blue/20 rounded-lg transition-colors text-center"
                         >
-                          <CreditCard className="h-6 w-6 text-red-600 mx-auto mb-1" />
-                          <p className="text-xs font-medium text-red-900">
+                          <CreditCard className="h-6 w-6 text-em-blue mx-auto mb-1" />
+                          <p className="text-xs font-medium text-em-navy">
                             {t('nav.payments')}
                           </p>
                         </a>

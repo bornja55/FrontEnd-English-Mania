@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -11,19 +12,22 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
+
+    /* เปลี่ยน primary, accent เป็นสีสถาบัน */
+    --primary: 191 100% 45%;           /* #00b6e3 ฟ้าอมเขียว */
+    --primary-foreground: 222.2 84% 4.9%;
+    --accent: 51 100% 50%;             /* #ffd600 เหลืองทอง */
+    --accent-foreground: 222.2 84% 4.9%;
+
     --secondary: 210 40% 96%;
     --secondary-foreground: 222.2 84% 4.9%;
     --muted: 210 40% 96%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 84% 4.9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --ring: 191 100% 45%;              /* ให้ ring เป็นสี primary */
     --radius: 0.5rem;
   }
 
@@ -34,19 +38,19 @@
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 84% 4.9%;
+    --primary: 191 100% 45%;           /* #00b6e3 */
+    --primary-foreground: 210 40% 98%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 51 100% 50%;             /* #ffd600 */
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 94.1%;
+    --ring: 191 100% 45%;
   }
 }
 
@@ -56,6 +60,7 @@
   }
   body {
     @apply bg-white text-gray-900;
+    font-family: 'Kanit', 'Prompt', 'Inter', sans-serif;
   }
 }
 
@@ -64,16 +69,13 @@
   width: 6px;
   height: 6px;
 }
-
 ::-webkit-scrollbar-track {
   background: #f1f5f9;
 }
-
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 3px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
@@ -85,14 +87,12 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
 }
-
 .line-clamp-2 {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
-
 .line-clamp-3 {
   overflow: hidden;
   display: -webkit-box;
@@ -111,24 +111,20 @@
     transform: translateY(0);
   }
 }
-
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out;
 }
 
-/* Gradient backgrounds */
+/* Gradient backgrounds (ปรับสีให้เข้ากับธีม) */
 .gradient-bg-primary {
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  background: linear-gradient(135deg, #00b6e3 0%, #ffd600 100%);
 }
-
 .gradient-bg-secondary {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, #ffd600 0%, #00b6e3 100%);
 }
-
 .gradient-bg-accent {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  background: linear-gradient(135deg, #ffd600 0%, #fff 100%);
 }
-
 .gradient-bg-danger {
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
 }
@@ -136,11 +132,12 @@
 /* Card hover effects */
 .card-hover {
   transition: all 0.3s ease;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.08);
 }
-
 .card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
 /* Button loading state */
@@ -148,7 +145,6 @@
   position: relative;
   color: transparent;
 }
-
 .btn-loading::after {
   content: '';
   position: absolute;
@@ -163,24 +159,19 @@
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
-
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
 }
 
 /* Focus styles */
 .focus-ring {
-  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  @apply focus:outline-none focus:ring-2 focus:ring-[color:var(--primary)] focus:ring-offset-2;
 }
 
 /* Text selection */
 ::selection {
-  background-color: #3b82f6;
+  background-color: #00b6e3;
   color: white;
 }
 
@@ -189,4 +180,26 @@
   .no-print {
     display: none !important;
   }
+}
+
+/* ปุ่ม gradient สไตล์สถาบัน */
+.btn-gradient {
+  background: linear-gradient(90deg, #00b6e3 0%, #ffd600 100%);
+  color: #003366;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: box-shadow 0.2s;
+}
+.btn-gradient:hover {
+  box-shadow: 0 4px 16px 0 rgba(0,182,227,0.15);
+}
+
+/* ภาพประกอบลอย */
+.illustration-float {
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0% { transform: translateY(0);}
+  50% { transform: translateY(-12px);}
+  100% { transform: translateY(0);}
 }

@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss"
 import colors from 'tailwindcss/colors'
 
@@ -28,8 +27,12 @@ const config: Config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "hsl(var(--primary))",                // #00b6e3
           foreground: "hsl(var(--primary-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",                 // #ffd600
+          foreground: "hsl(var(--accent-foreground))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -43,10 +46,6 @@ const config: Config = {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -55,16 +54,18 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // English Mania brand colors
-        'em-red': '#E53E3E',
-        'em-blue': '#1E40AF',
-        'em-yellow': '#FDD835',
-        'em-green': '#4CAF50',
+        // English Mania brand colors (custom)
+        'em-blue': '#00b6e3',      // ฟ้าอมเขียว
+        'em-yellow': '#ffd600',    // เหลืองทอง
+        'em-navy': '#003366',      // น้ำเงินเข้ม (optional)
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        sans: ['Kanit', 'Prompt', 'Inter', 'sans-serif'],
       },
       keyframes: {
         "accordion-down": {

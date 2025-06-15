@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -20,18 +19,18 @@ export function StatsCard({ title, value = 0, icon: Icon, color, index }: StatsC
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <Card className="hover:shadow-lg transition-shadow duration-300">
+      <Card className="hover:shadow-xl transition-shadow duration-300 rounded-2xl card-hover bg-white">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium text-gray-600">
+          <CardTitle className="text-sm font-bold text-em-navy tracking-wide">
             {title}
           </CardTitle>
-          <div className={`p-2 rounded-lg ${color}`}>
-            <Icon className="h-4 w-4 text-white" />
+          <div className={`p-3 rounded-xl shadow ${color} flex items-center justify-center`}>
+            <Icon className="h-6 w-6 text-white" />
           </div>
         </CardHeader>
         <CardContent>
           <motion.div
-            className="text-2xl font-bold text-gray-900"
+            className="text-3xl font-extrabold text-primary"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: index * 0.2 }}
