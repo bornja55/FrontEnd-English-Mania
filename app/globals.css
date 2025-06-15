@@ -56,7 +56,7 @@
 
 @layer base {
   * {
-    @apply border-zinc-200;
+    border-color: hsl(var(--border));
   }
   body {
     @apply bg-white text-gray-900;

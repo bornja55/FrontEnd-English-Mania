@@ -1,5 +1,4 @@
-import type { Config } from "tailwindcss"
-import colors from 'tailwindcss/colors'
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   darkMode: "class",
@@ -20,7 +19,10 @@ const config: Config = {
     },
     extend: {
       colors: {
-        ...colors,
+        // Default colors (required)
+        white: '#ffffff',
+        black: '#000000',
+        // Custom CSS variable-based colors
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -57,7 +59,7 @@ const config: Config = {
         // English Mania brand colors (custom)
         'em-blue': '#00b6e3',      // ฟ้าอมเขียว
         'em-yellow': '#ffd600',    // เหลืองทอง
-        'em-navy': '#003366',      // น้ำเงินเข้ม (optional)
+        'em-navy': '#003366',      // น้ำเงินเข้ม
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -109,6 +111,6 @@ const config: Config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+};
 
-export default config
+export default config;
