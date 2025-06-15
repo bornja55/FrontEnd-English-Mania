@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -42,16 +41,18 @@ export function LoginForm() {
 
   const handleLineLogin = () => {
     const clientId = process.env.NEXT_PUBLIC_LINE_LOGIN_CHANNEL_ID;
-    const redirectUri = encodeURIComponent(process.env.NEXT_PUBLIC_LINE_LOGIN_REDIRECT_URI || 'http://35.209.165.43:3000/line/callback');
-    const state = Math.random().toString(36).substring(2, 15); // random state
+    if (!clientId) {
+      alert('LINE Channel ID ไม่ถูกต้อง');
+      return;
+    }
+    const redirectUri = process.env.NEXT_PUBLIC_LINE_LOGIN_REDIRECT_URI || 'https://api.englishmaniaasia.com/login/callback';
+    const encodedRedirectUri = encodeURIComponent(redirectUri);
+    const state = Math.random().toString(36).substring(2, 15);
     const scope = 'profile openid email';
-    
-    const lineAuthUrl = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&state=${state}&scope=${scope}`;
-    
-    // เก็บ state ไว้ใน localStorage เพื่อตรวจสอบหลัง callback
-    localStorage.setItem('line_login_state', state);
-    
-    // Redirect ไป LINE
+
+    const lineAuthUrl = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${clientId}&redirect_uri=${encodedRedirectUri}&state=${state}&scope=${scope}`;
+    console.log('redirect_uri:', redirectUri);
+    console.log('lineAuthUrl:', lineAuthUrl);
     window.location.href = lineAuthUrl;
   };
 
