@@ -7,13 +7,13 @@ import { motion } from 'framer-motion';
 
 interface StatsCardProps {
   title: string;
-  value: number;
+  value: number | undefined;
   icon: LucideIcon;
   color: string;
   index: number;
 }
 
-export function StatsCard({ title, value, icon: Icon, color, index }: StatsCardProps) {
+export function StatsCard({ title, value = 0, icon: Icon, color, index }: StatsCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -51,7 +51,7 @@ function CountUpAnimation({ value }: { value: number }) {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      {value.toLocaleString()}
+      {(value || 0).toLocaleString()}
     </motion.span>
   );
 }
